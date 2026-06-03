@@ -10,9 +10,9 @@ import { useGallery } from "@/lib/store";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Crave n Love – Gourmet Dining & Event Catering in Calabar" },
+      { title: "Calabar Buka – Gourmet Dining & Event Catering in Calabar" },
       { name: "description", content: "Premium restaurant, catering & event hosting in Calabar, Nigeria. Order food, book birthdays, weddings & corporate events." },
-      { property: "og:title", content: "Crave n Love – Gourmet Dining & Event Catering" },
+      { property: "og:title", content: "Calabar Buka – Gourmet Dining & Event Catering" },
       { property: "og:description", content: "Premium restaurant, catering & event hosting in Calabar." },
       { property: "og:image", content: heroPlatter },
       { name: "twitter:image", content: heroPlatter },
