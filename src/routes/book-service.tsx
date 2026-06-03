@@ -7,8 +7,8 @@ import { Footer } from "@/components/site/Footer";
 export const Route = createFileRoute("/book-service")({
   head: () => ({
     meta: [
-      { title: "Book an Event – Crave n Love" },
-      { name: "description", content: "Book Crave n Love for birthdays, weddings, anniversaries, corporate events and private dinners in Calabar." },
+      { title: "Book an Event – Calabar Buka" },
+      { name: "description", content: "Book Calabar Buka for birthdays, weddings, anniversaries, corporate events and private dinners in Calabar." },
     ],
   }),
   component: BookPage,
