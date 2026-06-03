@@ -9,9 +9,9 @@ import { formatNaira } from "@/lib/format";
 export const Route = createFileRoute("/menu")({
   head: () => ({
     meta: [
-      { title: "Menu & Shop – Crave n Love Calabar" },
+      { title: "Menu & Shop – Calabar Buka" },
       { name: "description", content: "Browse our signature mains, small chops platters, celebration cakes and mocktails. Prices in Naira." },
-      { property: "og:title", content: "Crave n Love Menu" },
+      { property: "og:title", content: "Calabar Buka Menu" },
       { property: "og:description", content: "Signature mains, platters, cakes and mocktails." },
     ],
   }),
