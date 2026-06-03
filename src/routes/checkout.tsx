@@ -7,7 +7,7 @@ import { bookingsStore, cartStore, useBookings, useCart, useMenu, uid } from "@/
 import { buildWhatsAppUrl, formatNaira } from "@/lib/format";
 
 export const Route = createFileRoute("/checkout")({
-  head: () => ({ meta: [{ title: "Checkout – Crave n Love" }] }),
+  head: () => ({ meta: [{ title: "Checkout – Calabar Buka" }] }),
   component: CheckoutPage,
 });
 
@@ -60,7 +60,7 @@ function CheckoutPage() {
     }
 
     const message =
-`Hello Crave n Love, I want to place an order/booking from the website:
+`Hello Calabar Buka, I want to place an order/booking from the website:
 
 • Name: ${form.name}
 • Phone: ${form.phone}
