@@ -22,10 +22,15 @@ export function Nav() {
   return (
     <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-background/80 border-b border-border/60">
       <div className="container mx-auto px-5 lg:px-8 h-16 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 group">
-          <span className="h-9 w-9 rounded-full bg-gradient-gold grid place-items-center text-gold-foreground font-display font-bold">C</span>
-          <span className="font-display text-lg font-semibold tracking-tight">Calabar <span className="text-gold"> Buka</span>
-        </Link>
+       <Link to="/" className="flex items-center gap-2 group">
+  <span className="h-9 w-9 rounded-full bg-gradient-gold grid place-items-center text-gold-foreground font-display font-bold">
+    C
+  </span>
+
+  <span className="font-display text-lg font-semibold tracking-tight">
+    Calabar <span className="text-gold">Buka</span>
+  </span>
+</Link>
 
         <nav className="hidden md:flex items-center gap-8">
           {links.map((l) => (
