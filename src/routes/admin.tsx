@@ -11,7 +11,7 @@ import {
 import { formatNaira } from "@/lib/format";
 
 export const Route = createFileRoute("/admin")({
-  head: () => ({ meta: [{ title: "Admin – Crave n Love" }] }),
+  head: () => ({ meta: [{ title: "Admin – Calabar Buka" }] }),
   component: AdminPage,
 });
 
