@@ -24,7 +24,7 @@ export function Nav() {
       <div className="container mx-auto px-5 lg:px-8 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 group">
           <span className="h-9 w-9 rounded-full bg-gradient-gold grid place-items-center text-gold-foreground font-display font-bold">C</span>
-          <span className="font-display text-lg font-semibold tracking-tight">Crave <span className="text-gold">n</span> Love</span>
+          <span className="font-display text-lg font-semibold tracking-tight">Calabar <span className="text-gold"> Buka</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
