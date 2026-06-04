@@ -12,4 +12,13 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  // Force Nitro on with the Netlify preset so `npm run build` (outside the
+  // Lovable sandbox, e.g. on Netlify CI) produces a Netlify-compatible
+  // SSR bundle: static assets in `dist/` and an SSR function under
+  // `.netlify/functions-internal/server.mjs`. Without this override the
+  // package defaults to Cloudflare and Netlify gets a `dist/server/server.js`
+  // it doesn't know how to serve, producing 404s.
+  nitro: {
+    preset: "netlify",
+  },
 });
