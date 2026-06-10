@@ -4,12 +4,13 @@ import { useState } from "react";
 import { useTheme } from "@/lib/theme";
 import { useCart } from "@/lib/store";
 import { CartDrawer } from "./CartDrawer";
+import { InfoBar } from "./InfoBar";
 
 const links = [
   { to: "/", label: "Home" },
   { to: "/menu", label: "Menu" },
   { to: "/book-service", label: "Book Event" },
-  { to: "/admin", label: "Admin" },
+  { to: "/catering", label: "Catering" },
 ] as const;
 
 export function Nav() {
@@ -21,6 +22,7 @@ export function Nav() {
 
   return (
     <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-background/80 border-b border-border/60">
+      <InfoBar />
       <div className="container mx-auto px-5 lg:px-8 h-16 flex items-center justify-between">
        <Link to="/" className="flex items-center gap-2 group">
   <span className="h-9 w-9 rounded-full bg-gradient-gold grid place-items-center text-gold-foreground font-display font-bold">
