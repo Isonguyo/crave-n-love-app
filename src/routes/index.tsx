@@ -179,6 +179,10 @@ function HomePage() {
         </div>
       </section>
 
+      <StorySection />
+
+      <ReviewsSection />
+
       {/* CTA */}
       <section className="container mx-auto px-5 lg:px-8 pb-24">
         <div className="relative overflow-hidden rounded-3xl bg-gradient-gold p-10 sm:p-16 text-gold-foreground">
@@ -199,6 +203,7 @@ function HomePage() {
       </section>
 
       <Footer />
+      <StickyMobileCTA />
     </div>
   );
 }
