@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as MenuRouteImport } from './routes/menu'
 import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as CateringRouteImport } from './routes/catering'
 import { Route as BookServiceRouteImport } from './routes/book-service'
 import { Route as AdminDashboardRouteImport } from './routes/admin-dashboard'
 import { Route as AdminRouteImport } from './routes/admin'
@@ -24,6 +25,11 @@ const MenuRoute = MenuRouteImport.update({
 const CheckoutRoute = CheckoutRouteImport.update({
   id: '/checkout',
   path: '/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CateringRoute = CateringRouteImport.update({
+  id: '/catering',
+  path: '/catering',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BookServiceRoute = BookServiceRouteImport.update({
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRoute
   '/admin-dashboard': typeof AdminDashboardRoute
   '/book-service': typeof BookServiceRoute
+  '/catering': typeof CateringRoute
   '/checkout': typeof CheckoutRoute
   '/menu': typeof MenuRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminRoute
   '/admin-dashboard': typeof AdminDashboardRoute
   '/book-service': typeof BookServiceRoute
+  '/catering': typeof CateringRoute
   '/checkout': typeof CheckoutRoute
   '/menu': typeof MenuRoute
 }
@@ -69,6 +77,7 @@ export interface FileRoutesById {
   '/admin': typeof AdminRoute
   '/admin-dashboard': typeof AdminDashboardRoute
   '/book-service': typeof BookServiceRoute
+  '/catering': typeof CateringRoute
   '/checkout': typeof CheckoutRoute
   '/menu': typeof MenuRoute
 }
@@ -79,6 +88,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/admin-dashboard'
     | '/book-service'
+    | '/catering'
     | '/checkout'
     | '/menu'
   fileRoutesByTo: FileRoutesByTo
@@ -87,6 +97,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/admin-dashboard'
     | '/book-service'
+    | '/catering'
     | '/checkout'
     | '/menu'
   id:
@@ -95,6 +106,7 @@ export interface FileRouteTypes {
     | '/admin'
     | '/admin-dashboard'
     | '/book-service'
+    | '/catering'
     | '/checkout'
     | '/menu'
   fileRoutesById: FileRoutesById
@@ -104,6 +116,7 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRoute
   AdminDashboardRoute: typeof AdminDashboardRoute
   BookServiceRoute: typeof BookServiceRoute
+  CateringRoute: typeof CateringRoute
   CheckoutRoute: typeof CheckoutRoute
   MenuRoute: typeof MenuRoute
 }
@@ -122,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/checkout'
       fullPath: '/checkout'
       preLoaderRoute: typeof CheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/catering': {
+      id: '/catering'
+      path: '/catering'
+      fullPath: '/catering'
+      preLoaderRoute: typeof CateringRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/book-service': {
@@ -160,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRoute,
   AdminDashboardRoute: AdminDashboardRoute,
   BookServiceRoute: BookServiceRoute,
+  CateringRoute: CateringRoute,
   CheckoutRoute: CheckoutRoute,
   MenuRoute: MenuRoute,
 }

@@ -5,6 +5,9 @@ import heroPlatter from "@/assets/hero-platter.jpg";
 import heroEvent from "@/assets/hero-event.jpg";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
+import { StickyMobileCTA } from "@/components/site/StickyMobileCTA";
+import { StorySection } from "@/components/site/StorySection";
+import { ReviewsSection } from "@/components/site/ReviewsSection";
 import { useGallery } from "@/lib/store";
 
 export const Route = createFileRoute("/")({
@@ -54,7 +57,7 @@ function HomePage() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col pb-20 md:pb-0">
       <Nav />
 
       {/* HERO */}
@@ -176,6 +179,10 @@ function HomePage() {
         </div>
       </section>
 
+      <StorySection />
+
+      <ReviewsSection />
+
       {/* CTA */}
       <section className="container mx-auto px-5 lg:px-8 pb-24">
         <div className="relative overflow-hidden rounded-3xl bg-gradient-gold p-10 sm:p-16 text-gold-foreground">
@@ -196,6 +203,7 @@ function HomePage() {
       </section>
 
       <Footer />
+      <StickyMobileCTA />
     </div>
   );
 }
