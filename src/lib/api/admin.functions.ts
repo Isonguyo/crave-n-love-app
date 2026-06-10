@@ -77,7 +77,7 @@ export const adminUpdateStatus = createServerFn({ method: "POST" })
     const { assertAdmin } = await import("@/lib/admin/session.server");
     assertAdmin();
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { error } = await supabaseAdmin.from(data.table as AdminTable).update({ status: data.status }).eq("id", data.id);
+    const { error } = await (supabaseAdmin.from(data.table as AdminTable) as any).update({ status: data.status }).eq("id", data.id);
     if (error) throw new Error(error.message);
     return { ok: true };
   });
