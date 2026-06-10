@@ -14,7 +14,204 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      catering_requests: {
+        Row: {
+          created_at: string
+          customer_name: string
+          email: string | null
+          event_date: string
+          extras: Json
+          guests: number
+          id: string
+          menu_choices: string
+          notes: string | null
+          phone: string
+          status: string
+          venue_address: string
+        }
+        Insert: {
+          created_at?: string
+          customer_name: string
+          email?: string | null
+          event_date: string
+          extras?: Json
+          guests: number
+          id?: string
+          menu_choices: string
+          notes?: string | null
+          phone: string
+          status?: string
+          venue_address: string
+        }
+        Update: {
+          created_at?: string
+          customer_name?: string
+          email?: string | null
+          event_date?: string
+          extras?: Json
+          guests?: number
+          id?: string
+          menu_choices?: string
+          notes?: string | null
+          phone?: string
+          status?: string
+          venue_address?: string
+        }
+        Relationships: []
+      }
+      food_orders: {
+        Row: {
+          address: string
+          created_at: string
+          customer_name: string
+          delivery_at: string | null
+          id: string
+          image_urls: Json
+          items: Json
+          notes: string | null
+          phone: string
+          status: string
+          total: number
+        }
+        Insert: {
+          address: string
+          created_at?: string
+          customer_name: string
+          delivery_at?: string | null
+          id?: string
+          image_urls?: Json
+          items?: Json
+          notes?: string | null
+          phone: string
+          status?: string
+          total?: number
+        }
+        Update: {
+          address?: string
+          created_at?: string
+          customer_name?: string
+          delivery_at?: string | null
+          id?: string
+          image_urls?: Json
+          items?: Json
+          notes?: string | null
+          phone?: string
+          status?: string
+          total?: number
+        }
+        Relationships: []
+      }
+      reviews: {
+        Row: {
+          approved: boolean
+          avatar_color: string
+          body: string
+          created_at: string
+          id: string
+          name: string
+          rating: number
+        }
+        Insert: {
+          approved?: boolean
+          avatar_color?: string
+          body: string
+          created_at?: string
+          id?: string
+          name: string
+          rating: number
+        }
+        Update: {
+          approved?: boolean
+          avatar_color?: string
+          body?: string
+          created_at?: string
+          id?: string
+          name?: string
+          rating?: number
+        }
+        Relationships: []
+      }
+      table_reservations: {
+        Row: {
+          created_at: string
+          customer_name: string
+          email: string | null
+          guests: number
+          id: string
+          notes: string | null
+          phone: string
+          reservation_date: string
+          reservation_time: string
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          customer_name: string
+          email?: string | null
+          guests: number
+          id?: string
+          notes?: string | null
+          phone: string
+          reservation_date: string
+          reservation_time: string
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          customer_name?: string
+          email?: string | null
+          guests?: number
+          id?: string
+          notes?: string | null
+          phone?: string
+          reservation_date?: string
+          reservation_time?: string
+          status?: string
+        }
+        Relationships: []
+      }
+      venue_requests: {
+        Row: {
+          created_at: string
+          customer_name: string
+          email: string | null
+          event_date: string
+          event_time: string | null
+          event_type: string
+          guests: number
+          id: string
+          notes: string | null
+          phone: string
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          customer_name: string
+          email?: string | null
+          event_date: string
+          event_time?: string | null
+          event_type: string
+          guests: number
+          id?: string
+          notes?: string | null
+          phone: string
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          customer_name?: string
+          email?: string | null
+          event_date?: string
+          event_time?: string | null
+          event_type?: string
+          guests?: number
+          id?: string
+          notes?: string | null
+          phone?: string
+          status?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
