@@ -30,7 +30,7 @@ export function Nav() {
   </span>
 
   <span className="font-display text-lg font-semibold tracking-tight">
-    Calabar <span className="text-gold">Buka</span>
+    Crave<span className="text-gold">-N-</span>Love
   </span>
 </Link>
 
