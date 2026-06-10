@@ -5,6 +5,9 @@ import heroPlatter from "@/assets/hero-platter.jpg";
 import heroEvent from "@/assets/hero-event.jpg";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
+import { StickyMobileCTA } from "@/components/site/StickyMobileCTA";
+import { StorySection } from "@/components/site/StorySection";
+import { ReviewsSection } from "@/components/site/ReviewsSection";
 import { useGallery } from "@/lib/store";
 
 export const Route = createFileRoute("/")({
