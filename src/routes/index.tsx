@@ -74,7 +74,7 @@ function HomePage() {
               <span className="text-gold">.</span>
             </h1>
             <p className="mt-6 max-w-xl text-base sm:text-lg text-muted-foreground leading-relaxed">
-              From signature platters to styled celebrations — Crave n Love crafts every detail of
+              From signature platters to styled celebrations — Calabar Buka crafts every detail of
               Calabar's most memorable moments, one taste at a time.
             </p>
             <div className="mt-9 flex flex-wrap gap-3">

@@ -10,9 +10,9 @@ import { createCateringRequest } from "@/lib/api/bookings.functions";
 export const Route = createFileRoute("/catering")({
   head: () => ({
     meta: [
-      { title: "Calabar Buka Catering – Crave-N-Love" },
-      { name: "description", content: "Hire Crave-N-Love to cater your event anywhere in Calabar — bulk Buka-style menus, servers, warmers and more." },
-      { property: "og:title", content: "Calabar Buka Catering – Crave-N-Love" },
+      { title: "Calabar Buka Catering" },
+      { name: "description", content: "Hire Calabar Buka to cater your event anywhere in Calabar — bulk Buka-style menus, servers, warmers and more." },
+      { property: "og:title", content: "Calabar Buka Catering" },
       { property: "og:description", content: "Book full-service Buka-style catering at your venue in Calabar." },
     ],
   }),

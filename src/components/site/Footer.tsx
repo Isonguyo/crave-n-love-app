@@ -9,14 +9,14 @@ export function Footer() {
         <div className="md:col-span-2">
           <div className="flex items-center gap-2">
             <span className="h-9 w-9 rounded-full bg-gradient-gold grid place-items-center text-gold-foreground font-display font-bold">C</span>
-            <span className="font-display text-xl">Crave-N-Love</span>
+            <span className="font-display text-xl">Calabar Buka</span>
           </div>
           <p className="mt-4 max-w-md text-sm text-muted-foreground">
             Gourmet dining, premium catering and unforgettable events — crafted with love in Calabar.
           </p>
           <div className="mt-5 rounded-2xl overflow-hidden border border-border/60 aspect-[16/9] max-w-md">
             <iframe
-              title="Crave-N-Love location"
+              title="Calabar Buka location"
               src={CONTACT.mapEmbed}
               className="h-full w-full"
               loading="lazy"
@@ -56,14 +56,14 @@ export function Footer() {
               </div>
             </li>
             <li className="flex items-center gap-2">
-              <Instagram className="h-3.5 w-3.5 text-gold shrink-0" /> @cravenlove
+              <Instagram className="h-3.5 w-3.5 text-gold shrink-0" /> @calabarbuka
             </li>
           </ul>
         </div>
       </div>
       <div className="gold-divider" />
       <div className="container mx-auto px-5 lg:px-8 py-5 text-xs text-muted-foreground flex flex-wrap gap-2 justify-between">
-        <span>© {new Date().getFullYear()} Crave-N-Love. All rights reserved.</span>
+        <span>© {new Date().getFullYear()} Calabar Buka. All rights reserved.</span>
         <span>Made with love in Calabar</span>
       </div>
     </footer>
