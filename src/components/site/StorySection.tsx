@@ -10,7 +10,7 @@ export function StorySection() {
             Born on Marian Road, <span className="italic text-gold">brewed</span> with love.
           </h2>
           <p className="mt-5 text-muted-foreground leading-relaxed">
-            Crave-N-Love started as a small Calabar kitchen with a simple promise: every plate should feel
+            Calabar Buka started as a small Calabar kitchen with a simple promise: every plate should feel
             like home, and every event should feel like a story. From late-night Sunday Specials to bespoke
             wedding banquets, we cook the way Calabar lives — generously, joyfully, and with a touch of gold.
           </p>
@@ -40,14 +40,14 @@ export function StorySection() {
             </div>
             <div>
               <p className="text-xs uppercase tracking-widest text-gold">Owner & Head Chef</p>
-              <p className="font-display text-2xl mt-1">Chef Crave</p>
+              <p className="font-display text-2xl mt-1">Chef Buka</p>
             </div>
           </div>
           <p className="mt-6 text-sm text-muted-foreground leading-relaxed">
-            "I built Crave-N-Love so every guest — whether ordering a single bowl of afang or hiring us to feed
+            "I built Calabar Buka so every guest — whether ordering a single bowl of afang or hiring us to feed
             500 — leaves feeling like family. Hospitality is our heritage, and Calabar is our muse."
           </p>
-          <p className="mt-4 text-xs text-muted-foreground">— Founder, Crave-N-Love</p>
+          <p className="mt-4 text-xs text-muted-foreground">— Founder, Calabar Buka</p>
         </aside>
       </div>
     </section>

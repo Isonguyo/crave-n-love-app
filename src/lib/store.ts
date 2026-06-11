@@ -49,7 +49,7 @@ const KEYS = {
 const SEED_MENU: MenuItem[] = [
   { id: "m1", name: "Signature Jollof & Grilled Chicken", description: "Smoky party jollof with grilled chicken and sweet plantain.", price: 8500, category: "Main Courses", image: jollof },
   { id: "m2", name: "Seafood Okra Pot", description: "Fresh prawns, fish & periwinkle in our chef's okra stew with pounded yam.", price: 12500, category: "Main Courses", image: jollof },
-  { id: "m3", name: "Crave Native Rice Bowl", description: "Calabar-style native rice with assorted meat and prawn.", price: 9500, category: "Main Courses", image: jollof },
+  { id: "m3", name: "Buka Native Rice Bowl", description: "Calabar-style native rice with assorted meat and prawn.", price: 9500, category: "Main Courses", image: jollof },
   { id: "m4", name: "Royal Small Chops Platter (40 pcs)", description: "Puff puff, samosa, spring roll, gizdodo, mini suya skewers.", price: 18000, category: "Platters & Small Chops", image: smallchops },
   { id: "m5", name: "Grazing Board – Petite", description: "Cheese, charcuterie, fruit and house dips for 4–6 guests.", price: 32000, category: "Platters & Small Chops", image: smallchops },
   { id: "m6", name: "Three-Tier Blush & Gold Cake", description: "Vanilla bean sponge with raspberry-rose buttercream, gold leaf.", price: 95000, category: "Celebration Cakes", image: cake },

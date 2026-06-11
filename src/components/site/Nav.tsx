@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Moon, Sun, ShoppingBag, Menu as MenuIcon, X } from "lucide-react";
+import { Moon, Sun, ShoppingBag, Menu as MenuIcon, X, User } from "lucide-react";
 import { useState } from "react";
 import { useTheme } from "@/lib/theme";
 import { useCart } from "@/lib/store";
@@ -30,7 +30,7 @@ export function Nav() {
   </span>
 
   <span className="font-display text-lg font-semibold tracking-tight">
-    Crave<span className="text-gold">-N-</span>Love
+    Calabar<span className="text-gold"> </span>Buka
   </span>
 </Link>
 
@@ -61,6 +61,13 @@ export function Nav() {
           >
             {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </button>
+          <Link
+            to="/auth"
+            aria-label="Sign in"
+            className="hidden sm:inline-flex items-center gap-1.5 h-9 px-3 rounded-full border border-border hover:bg-muted text-sm font-medium"
+          >
+            <User className="h-4 w-4" /> Sign in
+          </Link>
           <button
             aria-label="Open cart"
             onClick={() => setCartOpen(true)}
