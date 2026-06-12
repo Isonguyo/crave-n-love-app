@@ -157,6 +157,7 @@ function Dashboard({ onSignOut }: { onSignOut: () => void }) {
     { key: "venue", label: "Venue Requests", count: data?.venue_requests.length ?? 0 },
     { key: "catering", label: "Catering", count: data?.catering_requests.length ?? 0 },
     { key: "reviews", label: "Reviews", count: data?.reviews.length ?? 0 },
+    { key: "menu", label: "Menu", count: 0 },
   ];
 
   return (
