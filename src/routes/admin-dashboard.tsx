@@ -373,7 +373,7 @@ function MenuManager() {
       ))}
       {rows && rows.length === 0 && <p className="text-center py-12 text-muted-foreground">No menu items yet — add one to get started.</p>}
 
-      {draft && (
+      {draft && (() => { const d = draft; return (
         <div className="fixed inset-0 z-50 grid place-items-center p-4 bg-black/50" onClick={() => !saving && setDraft(null)}>
           <div onClick={(e) => e.stopPropagation()} className="w-full max-w-lg rounded-3xl bg-card border border-border p-6 shadow-elegant max-h-[90vh] overflow-y-auto">
             <h3 className="font-display text-2xl">{draft.id ? "Edit item" : "New item"}</h3>
