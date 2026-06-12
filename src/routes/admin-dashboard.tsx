@@ -1,7 +1,7 @@
 import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { Lock, LogOut, RefreshCw, Trash2, Check, ExternalLink } from "lucide-react";
+import { Lock, LogOut, RefreshCw, Trash2, Check, ExternalLink, Plus, Pencil } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import {
@@ -12,13 +12,20 @@ import {
   adminUpdateStatus,
   adminDeleteRow,
 } from "@/lib/api/admin.functions";
+import {
+  adminListMenu,
+  adminUpsertMenuItem,
+  adminDeleteMenuItem,
+  type MenuRow,
+} from "@/lib/api/menu.functions";
+import { CATEGORIES } from "@/lib/store";
 
 export const Route = createFileRoute("/admin-dashboard")({
   head: () => ({ meta: [{ title: "Admin Dashboard – Calabar Buka" }] }),
   component: AdminDashboardPage,
 });
 
-type Tab = "orders" | "reservations" | "venue" | "catering" | "reviews";
+type Tab = "orders" | "reservations" | "venue" | "catering" | "reviews" | "menu";
 
 function AdminDashboardPage() {
   const router = useRouter();
