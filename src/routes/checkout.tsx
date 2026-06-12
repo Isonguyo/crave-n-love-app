@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { bookingsStore, cartStore, useBookings, useCart, useMenu, uid } from "@/lib/store";
+import { bookingsStore, cartStore, useBookings, useCart, uid } from "@/lib/store";
+import { useMenuDb } from "@/hooks/use-menu-db";
 import { buildWhatsAppUrl, formatNaira } from "@/lib/format";
 
 export const Route = createFileRoute("/checkout")({
