@@ -20,7 +20,7 @@ export const Route = createFileRoute("/menu")({
 });
 
 function MenuPage() {
-  const menu = useMenu();
+  const menu = useMenuDb();
   const cart = useCart();
   const [tab, setTab] = useState<Category>(CATEGORIES[0]);
 
