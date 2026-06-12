@@ -320,7 +320,7 @@ function MenuManager() {
     if (!draft) return;
     setSaving(true);
     try {
-      const payload: any = { ...draft, price: Number(draft.price), sort_order: Number(draft.sort_order) };
+      const payload: any = { ...draft!, price: Number(draft.price), sort_order: Number(draft.sort_order) };
       if (!payload.id) delete payload.id;
       await upsertFn({ data: payload });
       setDraft(null);
@@ -376,28 +376,28 @@ function MenuManager() {
       {draft && (
         <div className="fixed inset-0 z-50 grid place-items-center p-4 bg-black/50" onClick={() => !saving && setDraft(null)}>
           <div onClick={(e) => e.stopPropagation()} className="w-full max-w-lg rounded-3xl bg-card border border-border p-6 shadow-elegant max-h-[90vh] overflow-y-auto">
-            <h3 className="font-display text-2xl">{draft.id ? "Edit item" : "New item"}</h3>
+            <h3 className="font-display text-2xl">{draft!.id ? "Edit item" : "New item"}</h3>
             <div className="mt-4 space-y-3">
-              <Field label="Name"><input value={draft.name} onChange={(e) => setDraft({ ...draft, name: e.target.value })} className="input" /></Field>
-              <Field label="Description"><textarea value={draft.description} onChange={(e) => setDraft({ ...draft, description: e.target.value })} rows={3} className="input" /></Field>
+              <Field label="Name"><input value={draft!.name} onChange={(e) => setDraft({ ...draft!, name: e.target.value })} className="input" /></Field>
+              <Field label="Description"><textarea value={draft!.description} onChange={(e) => setDraft({ ...draft!, description: e.target.value })} rows={3} className="input" /></Field>
               <div className="grid grid-cols-2 gap-3">
-                <Field label="Price (₦)"><input type="number" min={0} value={draft.price} onChange={(e) => setDraft({ ...draft, price: Number(e.target.value) })} className="input" /></Field>
-                <Field label="Sort order"><input type="number" min={0} value={draft.sort_order} onChange={(e) => setDraft({ ...draft, sort_order: Number(e.target.value) })} className="input" /></Field>
+                <Field label="Price (₦)"><input type="number" min={0} value={draft!.price} onChange={(e) => setDraft({ ...draft!, price: Number(e.target.value) })} className="input" /></Field>
+                <Field label="Sort order"><input type="number" min={0} value={draft!.sort_order} onChange={(e) => setDraft({ ...draft!, sort_order: Number(e.target.value) })} className="input" /></Field>
               </div>
               <Field label="Category">
-                <select value={draft.category} onChange={(e) => setDraft({ ...draft, category: e.target.value })} className="input">
+                <select value={draft!.category} onChange={(e) => setDraft({ ...draft!, category: e.target.value })} className="input">
                   {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
                 </select>
               </Field>
-              <Field label="Image URL (optional)"><input value={draft.image_url} onChange={(e) => setDraft({ ...draft, image_url: e.target.value })} placeholder="https://..." className="input" /></Field>
+              <Field label="Image URL (optional)"><input value={draft!.image_url} onChange={(e) => setDraft({ ...draft!, image_url: e.target.value })} placeholder="https://..." className="input" /></Field>
               <label className="flex items-center gap-2 text-sm">
-                <input type="checkbox" checked={draft.available} onChange={(e) => setDraft({ ...draft, available: e.target.checked })} />
+                <input type="checkbox" checked={draft!.available} onChange={(e) => setDraft({ ...draft!, available: e.target.checked })} />
                 Visible on public menu
               </label>
             </div>
             <div className="mt-6 flex gap-2 justify-end">
               <button onClick={() => setDraft(null)} disabled={saving} className="h-10 px-4 rounded-full border border-border text-sm">Cancel</button>
-              <button onClick={save} disabled={saving || !draft.name} className="h-10 px-5 rounded-full bg-gradient-gold text-gold-foreground text-sm font-semibold disabled:opacity-50">
+              <button onClick={save} disabled={saving || !draft?.name} className="h-10 px-5 rounded-full bg-gradient-gold text-gold-foreground text-sm font-semibold disabled:opacity-50">
                 {saving ? "Saving…" : "Save"}
               </button>
             </div>
