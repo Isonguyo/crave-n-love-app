@@ -1,11 +1,12 @@
 import { useNavigate } from "@tanstack/react-router";
 import { X, Minus, Plus, Trash2 } from "lucide-react";
-import { cartStore, useCart, useMenu } from "@/lib/store";
+import { cartStore, useCart } from "@/lib/store";
+import { useMenuDb } from "@/hooks/use-menu-db";
 import { formatNaira } from "@/lib/format";
 
 export function CartDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
   const cart = useCart();
-  const menu = useMenu();
+  const menu = useMenuDb();
   const navigate = useNavigate();
 
   const lines = Object.entries(cart)
