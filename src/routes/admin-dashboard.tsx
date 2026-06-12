@@ -247,7 +247,8 @@ function Dashboard({ onSignOut }: { onSignOut: () => void }) {
             </div>
           </Card>
         ))}
-        {data && (
+        {tab === "menu" && <MenuManager />}
+        {data && tab !== "menu" && (
           (tab === "orders" && data.food_orders.length === 0) ||
           (tab === "reservations" && data.table_reservations.length === 0) ||
           (tab === "venue" && data.venue_requests.length === 0) ||
