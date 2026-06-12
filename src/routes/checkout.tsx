@@ -19,7 +19,7 @@ type EventDraft = {
 
 function CheckoutPage() {
   const cart = useCart();
-  const menu = useMenu();
+  const menu = useMenuDb();
   const bookings = useBookings();
   const [event, setEvent] = useState<EventDraft | null>(null);
   const [form, setForm] = useState({ name: "", phone: "", address: "", dateTime: "" });
