@@ -3,7 +3,8 @@ import { useState } from "react";
 import { Plus, Check } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { CATEGORIES, cartStore, useCart, useMenu, type Category } from "@/lib/store";
+import { CATEGORIES, cartStore, useCart, type Category } from "@/lib/store";
+import { useMenuDb } from "@/hooks/use-menu-db";
 import { formatNaira } from "@/lib/format";
 
 export const Route = createFileRoute("/menu")({
@@ -19,7 +20,7 @@ export const Route = createFileRoute("/menu")({
 });
 
 function MenuPage() {
-  const menu = useMenu();
+  const menu = useMenuDb();
   const cart = useCart();
   const [tab, setTab] = useState<Category>(CATEGORIES[0]);
 

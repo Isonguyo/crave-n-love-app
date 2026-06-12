@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import { bookingsStore, cartStore, useBookings, useCart, useMenu, uid } from "@/lib/store";
+import { bookingsStore, cartStore, useBookings, useCart, uid } from "@/lib/store";
+import { useMenuDb } from "@/hooks/use-menu-db";
 import { buildWhatsAppUrl, formatNaira } from "@/lib/format";
 
 export const Route = createFileRoute("/checkout")({
@@ -18,7 +19,7 @@ type EventDraft = {
 
 function CheckoutPage() {
   const cart = useCart();
-  const menu = useMenu();
+  const menu = useMenuDb();
   const bookings = useBookings();
   const [event, setEvent] = useState<EventDraft | null>(null);
   const [form, setForm] = useState({ name: "", phone: "", address: "", dateTime: "" });

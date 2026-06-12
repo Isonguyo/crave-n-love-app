@@ -1,7 +1,7 @@
 import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { Lock, LogOut, RefreshCw, Trash2, Check, ExternalLink } from "lucide-react";
+import { Lock, LogOut, RefreshCw, Trash2, Check, ExternalLink, Plus, Pencil } from "lucide-react";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
 import {
@@ -12,13 +12,20 @@ import {
   adminUpdateStatus,
   adminDeleteRow,
 } from "@/lib/api/admin.functions";
+import {
+  adminListMenu,
+  adminUpsertMenuItem,
+  adminDeleteMenuItem,
+  type MenuRow,
+} from "@/lib/api/menu.functions";
+import { CATEGORIES } from "@/lib/store";
 
 export const Route = createFileRoute("/admin-dashboard")({
   head: () => ({ meta: [{ title: "Admin Dashboard – Calabar Buka" }] }),
   component: AdminDashboardPage,
 });
 
-type Tab = "orders" | "reservations" | "venue" | "catering" | "reviews";
+type Tab = "orders" | "reservations" | "venue" | "catering" | "reviews" | "menu";
 
 function AdminDashboardPage() {
   const router = useRouter();
@@ -150,6 +157,7 @@ function Dashboard({ onSignOut }: { onSignOut: () => void }) {
     { key: "venue", label: "Venue Requests", count: data?.venue_requests.length ?? 0 },
     { key: "catering", label: "Catering", count: data?.catering_requests.length ?? 0 },
     { key: "reviews", label: "Reviews", count: data?.reviews.length ?? 0 },
+    { key: "menu", label: "Menu", count: 0 },
   ];
 
   return (
@@ -239,7 +247,8 @@ function Dashboard({ onSignOut }: { onSignOut: () => void }) {
             </div>
           </Card>
         ))}
-        {data && (
+        {tab === "menu" && <MenuManager />}
+        {data && tab !== "menu" && (
           (tab === "orders" && data.food_orders.length === 0) ||
           (tab === "reservations" && data.table_reservations.length === 0) ||
           (tab === "venue" && data.venue_requests.length === 0) ||
@@ -289,5 +298,122 @@ function StatusBar({ table, id, status, options, onStatus, onDelete }: {
         <Trash2 className="h-3 w-3" /> Delete
       </button>
     </div>
+  );
+}
+
+function emptyDraft(): MenuRow {
+  return { id: "" as any, name: "", description: "", price: 0, category: CATEGORIES[0], image_url: "", sort_order: 0, available: true };
+}
+
+function MenuManager() {
+  const listFn = useServerFn(adminListMenu);
+  const upsertFn = useServerFn(adminUpsertMenuItem);
+  const deleteFn = useServerFn(adminDeleteMenuItem);
+  const [rows, setRows] = useState<MenuRow[] | null>(null);
+  const [draft, setDraft] = useState<MenuRow | null>(null);
+  const [saving, setSaving] = useState(false);
+
+  const refresh = async () => setRows(await listFn());
+  useEffect(() => { refresh(); /* eslint-disable-next-line react-hooks/exhaustive-deps */ }, []);
+
+  const save = async () => {
+    if (!draft) return;
+    setSaving(true);
+    try {
+      const payload: any = { ...draft!, price: Number(draft.price), sort_order: Number(draft.sort_order) };
+      if (!payload.id) delete payload.id;
+      await upsertFn({ data: payload });
+      setDraft(null);
+      await refresh();
+    } catch (e: any) {
+      alert(e?.message ?? "Failed to save");
+    } finally { setSaving(false); }
+  };
+
+  const remove = async (id: string) => {
+    if (!confirm("Delete this menu item?")) return;
+    await deleteFn({ data: { id } });
+    refresh();
+  };
+
+  return (
+    <div className="space-y-4">
+      <div className="flex justify-between items-center">
+        <p className="text-sm text-muted-foreground">{rows?.length ?? 0} items · changes appear on the public menu immediately.</p>
+        <button onClick={() => setDraft(emptyDraft())} className="inline-flex items-center gap-2 h-9 px-4 rounded-full bg-gradient-gold text-gold-foreground text-sm font-semibold">
+          <Plus className="h-4 w-4" /> Add item
+        </button>
+      </div>
+
+      {rows === null && <p className="text-muted-foreground">Loading menu…</p>}
+      {rows?.map((m) => (
+        <div key={m.id} className="rounded-2xl bg-card border border-border/60 p-4 flex gap-4 items-start">
+          {m.image_url ? (
+            <img src={m.image_url} alt="" className="h-16 w-16 rounded-lg object-cover" />
+          ) : (
+            <div className="h-16 w-16 rounded-lg bg-muted grid place-items-center text-xs text-muted-foreground">No img</div>
+          )}
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 flex-wrap">
+              <p className="font-display text-lg">{m.name}</p>
+              {!m.available && <span className="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full bg-muted">hidden</span>}
+            </div>
+            <p className="text-xs text-muted-foreground mt-0.5">{m.category} · ₦{Number(m.price).toLocaleString()} · order {m.sort_order}</p>
+            {m.description && <p className="text-sm mt-1 line-clamp-2">{m.description}</p>}
+          </div>
+          <div className="flex gap-1">
+            <button onClick={() => setDraft({ ...m })} className="h-8 w-8 grid place-items-center rounded-full hover:bg-muted" title="Edit">
+              <Pencil className="h-3.5 w-3.5" />
+            </button>
+            <button onClick={() => remove(m.id)} className="h-8 w-8 grid place-items-center rounded-full hover:bg-destructive/10 text-destructive" title="Delete">
+              <Trash2 className="h-3.5 w-3.5" />
+            </button>
+          </div>
+        </div>
+      ))}
+      {rows && rows.length === 0 && <p className="text-center py-12 text-muted-foreground">No menu items yet — add one to get started.</p>}
+
+      {draft && (
+        <div className="fixed inset-0 z-50 grid place-items-center p-4 bg-black/50" onClick={() => !saving && setDraft(null)}>
+          <div onClick={(e) => e.stopPropagation()} className="w-full max-w-lg rounded-3xl bg-card border border-border p-6 shadow-elegant max-h-[90vh] overflow-y-auto">
+            <h3 className="font-display text-2xl">{draft!.id ? "Edit item" : "New item"}</h3>
+            <div className="mt-4 space-y-3">
+              <Field label="Name"><input value={draft!.name} onChange={(e) => setDraft({ ...draft!, name: e.target.value })} className="input" /></Field>
+              <Field label="Description"><textarea value={draft!.description} onChange={(e) => setDraft({ ...draft!, description: e.target.value })} rows={3} className="input" /></Field>
+              <div className="grid grid-cols-2 gap-3">
+                <Field label="Price (₦)"><input type="number" min={0} value={draft!.price} onChange={(e) => setDraft({ ...draft!, price: Number(e.target.value) })} className="input" /></Field>
+                <Field label="Sort order"><input type="number" min={0} value={draft!.sort_order} onChange={(e) => setDraft({ ...draft!, sort_order: Number(e.target.value) })} className="input" /></Field>
+              </div>
+              <Field label="Category">
+                <select value={draft!.category} onChange={(e) => setDraft({ ...draft!, category: e.target.value })} className="input">
+                  {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
+                </select>
+              </Field>
+              <Field label="Image URL (optional)"><input value={draft!.image_url} onChange={(e) => setDraft({ ...draft!, image_url: e.target.value })} placeholder="https://..." className="input" /></Field>
+              <label className="flex items-center gap-2 text-sm">
+                <input type="checkbox" checked={draft!.available} onChange={(e) => setDraft({ ...draft!, available: e.target.checked })} />
+                Visible on public menu
+              </label>
+            </div>
+            <div className="mt-6 flex gap-2 justify-end">
+              <button onClick={() => setDraft(null)} disabled={saving} className="h-10 px-4 rounded-full border border-border text-sm">Cancel</button>
+              <button onClick={save} disabled={saving || !draft?.name} className="h-10 px-5 rounded-full bg-gradient-gold text-gold-foreground text-sm font-semibold disabled:opacity-50">
+                {saving ? "Saving…" : "Save"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      <style>{`.input{width:100%;height:42px;border-radius:12px;background:hsl(var(--background));border:1px solid hsl(var(--input));padding:0 14px;outline:none}.input:focus{box-shadow:0 0 0 2px hsl(var(--ring))}textarea.input{height:auto;padding:10px 14px}`}</style>
+    </div>
+  );
+}
+
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <label className="block">
+      <span className="text-xs uppercase tracking-wider text-muted-foreground">{label}</span>
+      <div className="mt-1">{children}</div>
+    </label>
   );
 }
